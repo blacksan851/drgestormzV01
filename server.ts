@@ -1,6 +1,17 @@
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import path from 'path';
+import fs from 'fs';
+
+// Auto-fix missing src directory if user extracted files incorrectly
+const localSrcDir = path.join(process.cwd(), 'src');
+const parentSrcDir = path.join(process.cwd(), '..', 'src');
+
+if (!fs.existsSync(localSrcDir) && fs.existsSync(parentSrcDir)) {
+  console.log("Auto-fixing missing src directory...");
+  fs.cpSync(parentSrcDir, localSrcDir, { recursive: true });
+  console.log("Copied src directory successfully! Starting server...");
+}
 
 async function startServer() {
   const app = express();
