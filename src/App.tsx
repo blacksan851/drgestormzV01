@@ -15,6 +15,9 @@ import { Settings } from "./pages/Settings";
 import { Roles } from "./pages/Roles";
 import { Billing } from "./pages/Billing";
 import { Clients } from "./pages/Clients";
+import { Reports } from "./pages/Reports";
+import { Printers } from "./pages/Printers";
+import { Notifications } from "./pages/Notifications";
 
 // PrivateRoute Component
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -52,6 +55,9 @@ export default function App() {
             <Route path="/pos" element={<PrivateRoute><POS /></PrivateRoute>} />
             <Route path="/inventory" element={<PrivateRoute><Inventory /></PrivateRoute>} />
             <Route path="/clients" element={<PrivateRoute><Clients /></PrivateRoute>} />
+            <Route path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
+            <Route path="/printers" element={<PrivateRoute><Printers /></PrivateRoute>} />
+            <Route path="/notifications" element={<PrivateRoute><Notifications /></PrivateRoute>} />
             <Route path="/settings" element={<Navigate to="/settings/general" replace />} />
             <Route path="/settings/:tab" element={<PrivateRoute><Settings /></PrivateRoute>} />
           </Routes>

@@ -57,11 +57,9 @@ export function Dashboard() {
 
   return (
     <Layout title="Dashboard">
-      <div className="mb-8 lg:hidden flex items-center justify-between">
-        <div>
-          <h2 className="font-headline-md text-headline-md font-bold text-primary">Empresa Exemplo Lda</h2>
-          <p className="font-body-md text-body-md text-on-surface-variant">Bom dia, Administrador</p>
-        </div>
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-[#0B2E1E]">Dashboard</h2>
+        <p className="text-sm text-gray-500">Visão geral do seu negócio</p>
       </div>
 
       {/* Quick Actions */}
@@ -80,117 +78,111 @@ export function Dashboard() {
         </Link>
       </div>
 
-      {/* Financial Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-        <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_12px_rgba(26,43,75,0.05)] border border-outline-variant/30 flex flex-col justify-between h-32">
-          <div className="flex justify-between items-start">
-            <span className="font-label-md text-label-md text-on-surface-variant">Receita Total</span>
-            <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
-              <span className="material-symbols-outlined text-[18px]">account_balance</span>
-            </div>
-          </div>
+      {/* Dashboard Cards Row 1 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+        <div className="bg-[#E6F4EA] rounded-xl p-5 border-l-4 border-[#0B2E1E] flex justify-between items-center h-28 shadow-sm hover:-translate-y-1 transition-transform">
           <div>
-            <h3 className="font-headline-md text-[20px] font-bold text-primary">MT {stats.totalSalesAmount.toLocaleString('pt-MZ', { minimumFractionDigits: 2 })}</h3>
-            <p className="font-label-sm text-label-sm text-secondary mt-1 flex items-center gap-1">
-              <span className="material-symbols-outlined text-[14px]">trending_up</span> +12% este mês
-            </p>
+            <span className="text-sm text-gray-600 block mb-1">Vendas do Dia</span>
+            <h3 className="text-2xl font-bold text-[#0B2E1E]">0 MZN</h3>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#34D399]/20 flex items-center justify-center text-[#0B2E1E]">
+            <span className="material-symbols-outlined text-[20px]">shopping_cart</span>
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_12px_rgba(26,43,75,0.05)] border border-outline-variant/30 flex flex-col justify-between h-32">
-          <div className="flex justify-between items-start">
-            <span className="font-label-md text-label-md text-on-surface-variant">Vendas Totais</span>
-            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <span className="material-symbols-outlined text-[18px]">shopping_cart</span>
-            </div>
-          </div>
+        <div className="bg-[#E6F4EA] rounded-xl p-5 border-l-4 border-[#34D399] flex justify-between items-center h-28 shadow-sm hover:-translate-y-1 transition-transform">
           <div>
-            <h3 className="font-headline-md text-[20px] font-bold text-primary">{stats.sales} un</h3>
-            <p className="font-label-sm text-label-sm text-secondary mt-1 flex items-center gap-1">
-              <span className="material-symbols-outlined text-[14px]">trending_up</span> +5% este mês
-            </p>
+            <span className="text-sm text-gray-600 block mb-1">Vendas do Mês</span>
+            <h3 className="text-2xl font-bold text-[#0B2E1E]">{stats.totalSalesAmount.toLocaleString('pt-MZ')} MZN</h3>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#34D399]/20 flex items-center justify-center text-[#34D399]">
+            <span className="material-symbols-outlined text-[20px]">trending_up</span>
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_12px_rgba(26,43,75,0.05)] border border-outline-variant/30 flex flex-col justify-between h-32">
-          <div className="flex justify-between items-start">
-            <span className="font-label-md text-label-md text-on-surface-variant">Estoque Registrado</span>
-            <div className="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center text-error">
-              <span className="material-symbols-outlined text-[18px]">inventory_2</span>
-            </div>
-          </div>
+        <div className="bg-[#E6F4EA] rounded-xl p-5 border-l-4 border-[#0B2E1E] flex justify-between items-center h-28 shadow-sm hover:-translate-y-1 transition-transform">
           <div>
-            <h3 className="font-headline-md text-[20px] font-bold text-primary">{stats.products} Itens</h3>
-            <p className="font-label-sm text-label-sm text-error mt-1 flex items-center gap-1">
-              Vigiar os níveis mínimos
-            </p>
+            <span className="text-sm text-gray-600 block mb-1">Total de Produtos</span>
+            <h3 className="text-2xl font-bold text-[#0B2E1E]">{stats.products}</h3>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#34D399]/20 flex items-center justify-center text-[#0B2E1E]">
+            <span className="material-symbols-outlined text-[20px]">inventory_2</span>
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_12px_rgba(26,43,75,0.05)] border border-outline-variant/30 flex flex-col justify-between h-32">
-          <div className="flex justify-between items-start">
-            <span className="font-label-md text-label-md text-on-surface-variant">Clientes Registrados</span>
-            <div className="w-8 h-8 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
-              <span className="material-symbols-outlined text-[18px]">group</span>
-            </div>
-          </div>
+        <div className="bg-[#E6F4EA] rounded-xl p-5 border-l-4 border-[#34D399] flex justify-between items-center h-28 shadow-sm hover:-translate-y-1 transition-transform">
           <div>
-            <h3 className="font-headline-md text-[20px] font-bold text-primary">{stats.clients}</h3>
-            <p className="font-label-sm text-label-sm text-on-surface-variant mt-1">Registrados recentemente</p>
+            <span className="text-sm text-gray-600 block mb-1">Total de Clientes</span>
+            <h3 className="text-2xl font-bold text-[#0B2E1E]">{stats.clients}</h3>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#34D399]/20 flex items-center justify-center text-[#34D399]">
+            <span className="material-symbols-outlined text-[20px]">group</span>
           </div>
         </div>
       </div>
 
-      {/* Complex Layout: Chart & Alerts */}
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 pb-8">
-        <div className="xl:col-span-8 bg-surface-container-lowest rounded-xl p-6 shadow-[0px_4px_12px_rgba(26,43,75,0.05)] border border-outline-variant/30 flex flex-col">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="font-headline-md text-[20px] font-bold text-primary">Tendência de Receita</h3>
-            <select className="bg-surface border border-outline-variant rounded-lg px-3 py-1 text-label-sm font-label-sm text-on-surface-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none">
-              <option>Últimos 6 meses</option>
-              <option>Este Ano</option>
-            </select>
+      {/* Dashboard Cards Row 2 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+        <div className="bg-[#E6F4EA] rounded-xl p-5 border-l-4 border-[#34D399] flex justify-between items-center h-28 shadow-sm hover:-translate-y-1 transition-transform">
+          <div>
+            <span className="text-sm text-gray-600 block mb-1">Lucro Real</span>
+            <h3 className="text-2xl font-bold text-[#0B2E1E]">0 MZN</h3>
+            <span className="text-xs text-gray-500 mt-1 block">Receita - Custo</span>
           </div>
-          <div className="flex-1 min-h-[250px] bg-surface-container-low rounded-lg border border-outline-variant/20 flex items-end px-4 pt-8 pb-4 gap-2 relative overflow-hidden">
-            <div className="w-full bg-secondary/20 h-[40%] rounded-t-sm hover:bg-secondary/40 transition-colors"></div>
-            <div className="w-full bg-secondary/30 h-[60%] rounded-t-sm hover:bg-secondary/50 transition-colors"></div>
-            <div className="w-full bg-secondary/20 h-[30%] rounded-t-sm hover:bg-secondary/40 transition-colors"></div>
-            <div className="w-full bg-secondary/50 h-[80%] rounded-t-sm hover:bg-secondary/70 transition-colors"></div>
-            <div className="w-full bg-secondary/40 h-[70%] rounded-t-sm hover:bg-secondary/60 transition-colors"></div>
-            <div className="w-full bg-secondary h-[95%] rounded-t-sm shadow-[0_0_10px_rgba(0,108,73,0.3)]"></div>
-            <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10">
-              <div className="w-full h-px bg-primary"></div>
-              <div className="w-full h-px bg-primary"></div>
-              <div className="w-full h-px bg-primary"></div>
-              <div className="w-full h-px bg-primary"></div>
+          <div className="w-10 h-10 rounded-full bg-[#34D399]/20 flex items-center justify-center text-[#34D399]">
+            <span className="material-symbols-outlined text-[20px]">attach_money</span>
+          </div>
+        </div>
+
+        <div className="bg-[#FCE8E8] rounded-xl p-5 border-l-4 border-[#EF4444] flex justify-between items-center h-28 shadow-sm hover:-translate-y-1 transition-transform">
+          <div>
+            <span className="text-sm text-gray-600 block mb-1">Estoque Baixo</span>
+            <h3 className="text-2xl font-bold text-[#0B2E1E]">0</h3>
+            <span className="text-xs text-[#EF4444] mt-1 block">Itens críticos</span>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#EF4444]/10 flex items-center justify-center text-[#EF4444]">
+            <span className="material-symbols-outlined text-[20px]">warning</span>
+          </div>
+        </div>
+
+        <div className="bg-[#FEF3C7] rounded-xl p-5 border-l-4 border-[#F59E0B] flex justify-between items-center h-28 shadow-sm hover:-translate-y-1 transition-transform">
+          <div>
+            <span className="text-sm text-gray-600 block mb-1">Despesas do Mês</span>
+            <h3 className="text-2xl font-bold text-[#0B2E1E]">0 MZN</h3>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-[#F59E0B]/10 flex items-center justify-center text-[#F59E0B]">
+            <span className="material-symbols-outlined text-[20px]">receipt_long</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Charts Row */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pb-8">
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col">
+          <h3 className="font-bold text-[#0B2E1E] mb-6">Vendas da Semana</h3>
+          <div className="flex-1 min-h-[250px] relative border-l border-b border-gray-200">
+            {/* Chart placeholders - dashed lines */}
+            <div className="absolute inset-0 flex flex-col justify-between">
+              <div className="w-full border-t border-dashed border-gray-200 h-0 relative"><span className="absolute -left-6 -top-2 text-xs text-gray-400">4</span></div>
+              <div className="w-full border-t border-dashed border-gray-200 h-0 relative"><span className="absolute -left-6 -top-2 text-xs text-gray-400">3</span></div>
+              <div className="w-full border-t border-dashed border-gray-200 h-0 relative"><span className="absolute -left-6 -top-2 text-xs text-gray-400">2</span></div>
+              <div className="w-full border-t border-dashed border-gray-200 h-0 relative"><span className="absolute -left-6 -top-2 text-xs text-gray-400">1</span></div>
+              <div className="w-full border-t border-dashed border-gray-200 h-0 relative"></div>
             </div>
           </div>
         </div>
 
-        <div className="xl:col-span-4 bg-surface-container-lowest rounded-xl p-6 shadow-[0px_4px_12px_rgba(26,43,75,0.05)] border border-outline-variant/30">
-          <h3 className="font-headline-md text-[20px] font-bold text-primary mb-6 flex items-center gap-2">
-            <span className="material-symbols-outlined text-secondary">lightbulb</span>
-            Atividade e Alertas
-          </h3>
-          <div className="space-y-4">
-             {recentActivities.length === 0 ? (
-               <div className="text-center text-on-surface-variant text-sm py-4">Sem atividade recente.</div>
-             ) : (
-               recentActivities.map((act, i) => (
-                <div key={i} className="flex items-start gap-3 pb-4 border-b border-surface-variant/50">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="material-symbols-outlined text-[16px]">receipt_long</span>
-                  </div>
-                  <div>
-                    <p className="font-label-md text-label-md font-semibold text-primary">Venda {act.tx_id}</p>
-                    <p className="font-label-sm text-label-sm text-on-surface-variant mt-1">Cliente: {act.client_name}</p>
-                    <div className="mt-2 font-label-md text-[13px] text-secondary font-bold hover:underline">
-                      {Number(act.amount).toLocaleString('pt-MZ', { minimumFractionDigits: 2 })} MT
-                    </div>
-                  </div>
-                </div>
-               ))
-             )}
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col">
+          <h3 className="font-bold text-[#0B2E1E] mb-6">Produtos Mais Vendidos</h3>
+          <div className="flex-1 min-h-[250px] relative border-l border-b border-gray-200 ml-8">
+            {/* Chart placeholders - dashed lines */}
+            <div className="absolute inset-0 flex flex-col justify-between">
+              <div className="w-full border-t border-dashed border-gray-200 h-0"></div>
+              <div className="w-full border-t border-dashed border-gray-200 h-0"></div>
+              <div className="w-full border-t border-dashed border-gray-200 h-0"></div>
+              <div className="w-full border-t border-dashed border-gray-200 h-0"></div>
+              <div className="w-full border-t border-dashed border-gray-200 h-0"></div>
+            </div>
           </div>
         </div>
       </div>

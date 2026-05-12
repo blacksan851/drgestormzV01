@@ -17,15 +17,17 @@ export function Layout({ title, children, headerChildren, fullWidth = false }: L
   const isPos = location.pathname.includes('/pos');
 
   return (
-    <div className="bg-background text-on-surface min-h-screen flex font-body-md antialiased pb-20 md:pb-0">
+    <div className="min-h-screen bg-[#F4F9F4] text-on-surface">
       <Sidebar />
-      <div className="flex-1 flex flex-col min-h-screen lg:ml-72 w-full">
-        {!isPos && <Header title={title} />}
-        <main className={`flex-1 flex flex-col ${fullWidth ? "w-full" : "p-margin-mobile md:p-margin-desktop gap-gutter max-w-container-max mx-auto w-full"} ${isPos ? "pt-20 md:pt-8" : "pt-24 lg:pt-8"}`}>
-            {children}
-        </main>
-      </div>
-      <MobileNav />
+      <Header title={title}>
+        {headerChildren}
+      </Header>
+      
+      <main className="lg:ml-64 pt-16 min-h-screen transition-all duration-300 relative z-10">
+        <div className="p-8">
+          {children}
+        </div>
+      </main>
     </div>
   );
 }
