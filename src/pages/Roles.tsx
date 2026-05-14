@@ -1,6 +1,7 @@
 import { Layout } from "../components/Layout";
 import React, { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
+import { v4 as uuidv4 } from 'uuid';
 
 interface Role {
   id: string;
@@ -23,6 +24,14 @@ export function Roles() {
     description: '',
     permissions: [] as string[]
   });
+  const [isUsingMockData, setIsUsingMockData] = useState(false);
+
+  const mockRoles: Role[] = [
+    { id: uuidv4(), name: 'Administrador', description: 'Acesso total ao sistema', permissions: ['all'], users_count: 2 },
+    { id: uuidv4(), name: 'Gerente de Loja', description: 'Acesso a vendas e relatórios', permissions: ['pos_access', 'inventory_read', 'sales_read'], users_count: 5 },
+    { id: uuidv4(), name: 'Caixa', description: 'Acesso apenas ao POS', permissions: ['pos_access'], users_count: 12 },
+    { id: uuidv4(), name: 'Estoquista', description: 'Gestão de inventário', permissions: ['inventory_read', 'inventory_write'], users_count: 3 }
+  ];
 
   useEffect(() => {
     fetchRoles();
@@ -37,11 +46,18 @@ export function Roles() {
         .order('created_at', { ascending: true });
 
       if (error) throw error;
-      if (data) {
+      if (data && data.length > 0) {
         setRoles(data);
+        setIsUsingMockData(false);
+      } else {
+        setRoles([]);
+        setIsUsingMockData(false);
       }
     } catch (error) {
       console.error("Error fetching roles:", error);
+      console.warn("Usando dados de demonstração (Mock Data) para Cargos.");
+      setRoles(mockRoles);
+      setIsUsingMockData(true);
     } finally {
       setLoading(false);
     }
@@ -159,6 +175,13 @@ export function Roles() {
           Novo Cargo
         </button>
       </div>
+
+      {isUsingMockData && (
+        <div className="mb-6 p-3 bg-yellow-100 text-yellow-800 rounded-lg text-sm flex items-center gap-2">
+          <span className="material-symbols-outlined text-[18px]">warning</span>
+          Atenção: A ligação à base de dados falhou. A mostrar dados de demonstração (Mock Data).
+        </div>
+      )}
 
       {loading ? (
         <div className="flex justify-center items-center h-64">

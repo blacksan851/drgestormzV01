@@ -107,7 +107,7 @@ export function POS() {
       <div className="flex flex-col lg:flex-row h-[calc(100vh-64px)] -m-8 relative">
         
         {/* Main POS Area - Product Grid */}
-        <div className="flex-1 flex flex-col bg-[#F4F9F4] p-6 lg:p-8 overflow-y-auto custom-scrollbar">
+        <div className="flex-1 flex flex-col bg-white p-6 lg:p-8 overflow-y-auto custom-scrollbar">
           
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-[#0B2E1E]">Ponto de Venda</h2>
@@ -188,7 +188,7 @@ export function POS() {
               <h2 className="text-xl font-bold text-[#0B2E1E]">Resumo do Pedido</h2>
               <p className="text-sm text-gray-500 mt-1">{selectedClient ? selectedClient.name : 'Cliente Final'}</p>
             </div>
-            <button onClick={() => setIsClientModalOpen(true)} className="w-10 h-10 rounded-full bg-[#F4F9F4] text-[#0B2E1E] flex items-center justify-center hover:bg-[#E6F4EA] transition-colors">
+            <button onClick={() => setIsClientModalOpen(true)} className="w-10 h-10 rounded-full bg-white text-[#0B2E1E] flex items-center justify-center hover:bg-[#E6F4EA] transition-colors">
               <span className="material-symbols-outlined">person_add</span>
             </button>
           </div>
@@ -197,12 +197,12 @@ export function POS() {
           {isClientModalOpen && (
              <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
                 <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
-                   <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#F4F9F4]">
+                   <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-white">
                       <h3 className="text-lg font-bold text-[#0B2E1E]">Selecionar Cliente</h3>
                       <button onClick={() => setIsClientModalOpen(false)} className="text-gray-500 hover:bg-white p-1.5 rounded-full transition-colors"><span className="material-symbols-outlined text-[20px]">close</span></button>
                    </div>
                    <div className="p-4 max-h-[60vh] overflow-y-auto">
-                      <button onClick={() => { setSelectedClient(null); setIsClientModalOpen(false); }} className="w-full text-left p-4 hover:bg-[#F4F9F4] rounded-xl mb-2 flex items-center gap-3 border border-gray-100 transition-colors">
+                      <button onClick={() => { setSelectedClient(null); setIsClientModalOpen(false); }} className="w-full text-left p-4 hover:bg-white rounded-xl mb-2 flex items-center gap-3 border border-gray-100 transition-colors">
                         <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
                           <span className="material-symbols-outlined text-[20px]">person_off</span>
                         </div>
@@ -212,7 +212,7 @@ export function POS() {
                         </div>
                       </button>
                       {clients.map(c => (
-                        <button key={c.id} onClick={() => { setSelectedClient(c); setIsClientModalOpen(false); }} className="w-full text-left p-4 hover:bg-[#F4F9F4] rounded-xl mb-2 flex items-center gap-3 border border-gray-100 transition-colors">
+                        <button key={c.id} onClick={() => { setSelectedClient(c); setIsClientModalOpen(false); }} className="w-full text-left p-4 hover:bg-white rounded-xl mb-2 flex items-center gap-3 border border-gray-100 transition-colors">
                            <div className="w-10 h-10 rounded-full bg-[#E6F4EA] flex items-center justify-center text-[#0B2E1E]">
                              <span className="material-symbols-outlined text-[20px]">person</span>
                            </div>
@@ -246,7 +246,7 @@ export function POS() {
                   </div>
                   <div className="flex flex-col items-end gap-3">
                      <span className="text-sm font-bold text-[#34D399]">{(item.price * item.qty).toFixed(2)}</span>
-                     <div className="flex items-center bg-[#F4F9F4] rounded-lg border border-[#E6F4EA]">
+                     <div className="flex items-center bg-white rounded-lg border border-[#E6F4EA]">
                        <button onClick={() => updateQty(item.id, -1)} className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-[#0B2E1E] transition-colors">
                          <span className="material-symbols-outlined text-[16px]">remove</span>
                        </button>
@@ -293,11 +293,7 @@ export function POS() {
                   <button 
                     key={method.id}
                     onClick={() => setPaymentMethod(method.id)}
-                    className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl transition-all ${
-                      paymentMethod === method.id 
-                        ? 'bg-[#E6F4EA] border-2 border-[#34D399] text-[#0B2E1E]' 
-                        : 'bg-[#F4F9F4] border-2 border-transparent text-gray-500 hover:bg-gray-100'
-                    }`}
+                    className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl transition-all ${ paymentMethod === method.id ? 'bg-[#E6F4EA] border-2 border-[#34D399] text-[#0B2E1E]' : 'bg-white border-2 border-transparent text-gray-500 hover:bg-gray-100'}`}
                   >
                     <span className="material-symbols-outlined text-[20px]" style={paymentMethod === method.id ? { fontVariationSettings: "'FILL' 1" } : {}}>{method.icon}</span>
                     <span className="text-[11px] font-bold">{method.label}</span>

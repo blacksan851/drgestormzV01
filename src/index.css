@@ -3,9 +3,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #031635;
-  --color-primary-container: #1a2b4b;
-  --color-on-primary-container: #8293b8;
+  --color-primary: #006c49;
+  --color-primary-container: #6cf8bb;
+  --color-on-primary-container: #00714d;
   --color-on-primary: #ffffff;
   
   --color-secondary: #006c49;
@@ -36,7 +36,7 @@
   
   --color-outline: #75777f;
   --color-outline-variant: #c5c6cf;
-  --color-background: #f7f9fb;
+  --color-background: #ffffff;
   --color-on-background: #191c1e;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;

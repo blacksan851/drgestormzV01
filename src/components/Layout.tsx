@@ -17,7 +17,7 @@ export function Layout({ title, children, headerChildren, fullWidth = false }: L
   const isPos = location.pathname.includes('/pos');
 
   return (
-    <div className="min-h-screen bg-[#F4F9F4] text-on-surface">
+    <div className="min-h-screen bg-white text-on-surface">
       <Sidebar />
       <Header title={title}>
         {headerChildren}

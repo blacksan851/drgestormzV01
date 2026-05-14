@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Layout } from "../components/Layout";
 import { supabase } from "../lib/supabase";
+import { v4 as uuidv4 } from 'uuid';
 
 export function Billing() {
   const [sales, setSales] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isUsingMockData, setIsUsingMockData] = useState(false);
+
+  const mockSales = [
+    { id: uuidv4(), tx_id: 'ORD-1001', client_name: 'João Silva', amount: 3500.00, status: 'Pago', created_at: new Date().toISOString() },
+    { id: uuidv4(), tx_id: 'ORD-1002', client_name: 'Maria Santos', amount: 1250.50, status: 'Pendente', created_at: new Date().toISOString() },
+    { id: uuidv4(), tx_id: 'ORD-1003', client_name: 'Empresa Fictícia Lda', amount: 15000.00, status: 'Pago', created_at: new Date(Date.now() - 86400000).toISOString() },
+    { id: uuidv4(), tx_id: 'ORD-1004', client_name: 'Cliente Final', amount: 450.00, status: 'Anulado', created_at: new Date(Date.now() - 172800000).toISOString() }
+  ];
 
   useEffect(() => {
     fetchSales();
@@ -19,9 +28,18 @@ export function Billing() {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setSales(data || []);
+      if (data && data.length > 0) {
+        setSales(data);
+        setIsUsingMockData(false);
+      } else {
+        setSales([]);
+        setIsUsingMockData(false);
+      }
     } catch (error) {
       console.error('Error fetching sales:', error);
+      console.warn('Usando dados de demonstração (Mock Data) para Faturação.');
+      setSales(mockSales);
+      setIsUsingMockData(true);
     } finally {
       setLoading(false);
     }
@@ -56,6 +74,13 @@ export function Billing() {
           </button>
         </div>
       </div>
+
+      {isUsingMockData && (
+        <div className="mb-6 p-3 bg-yellow-100 text-yellow-800 rounded-lg text-sm flex items-center gap-2">
+          <span className="material-symbols-outlined text-[18px]">warning</span>
+          Atenção: A ligação à base de dados falhou. A mostrar dados de demonstração (Mock Data).
+        </div>
+      )}
 
       <div className="bg-surface-container-lowest rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] border border-outline-variant/30 overflow-hidden flex flex-col flex-1">
         <div className="overflow-x-auto">

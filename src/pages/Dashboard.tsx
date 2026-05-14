@@ -12,6 +12,14 @@ export function Dashboard() {
   });
 
   const [recentActivities, setRecentActivities] = useState<any[]>([]);
+  const [isUsingMockData, setIsUsingMockData] = useState(false);
+
+  const mockStats = {
+    products: 15,
+    clients: 10,
+    sales: 4,
+    totalSalesAmount: 20200.50
+  };
 
   useEffect(() => {
     async function fetchStats() {
@@ -37,6 +45,7 @@ export function Dashboard() {
           sales: salesCount,
           totalSalesAmount
         });
+        setIsUsingMockData(false);
 
         // Fetch recent activities
         const { data: recent } = await supabase
@@ -49,6 +58,9 @@ export function Dashboard() {
 
       } catch (error) {
         console.error("Error fetching stats:", error);
+        console.warn("Usando dados de demonstração (Mock Data) para o Dashboard.");
+        setStats(mockStats);
+        setIsUsingMockData(true);
       }
     }
 
@@ -61,6 +73,15 @@ export function Dashboard() {
         <h2 className="text-2xl font-bold text-[#0B2E1E]">Dashboard</h2>
         <p className="text-sm text-gray-500">Visão geral do seu negócio</p>
       </div>
+
+      </div>
+
+      {isUsingMockData && (
+        <div className="mb-6 p-3 bg-yellow-100 text-yellow-800 rounded-lg text-sm flex items-center gap-2">
+          <span className="material-symbols-outlined text-[18px]">warning</span>
+          Atenção: A ligação à base de dados falhou. A mostrar dados de demonstração (Mock Data).
+        </div>
+      )}
 
       {/* Quick Actions */}
       <div className="mb-8 flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
